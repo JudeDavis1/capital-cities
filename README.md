@@ -51,6 +51,7 @@ Primitive flow for this:
 
 - A Next.js app with Tailwind CSS and shadcn/ui (\*).
 - The sizing etc. works pretty well until a minimum screen width of about 300px.
+- The feedback is given via toast messages.
 
 Rough frontend template:
 
