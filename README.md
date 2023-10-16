@@ -29,6 +29,7 @@ Primitive flow for this:
 ### `frontend`
 
 - A Next.js app with Tailwind CSS and shadcn/ui (\*).
+- The sizing etc. works pretty well until a minimum screen width of about 300px.
 
 Rough frontend template:
 
@@ -41,3 +42,4 @@ _(\*) shadcn/ui is a UI component library that allows you to insert premade cust
 - To limit API calls, we can use caching mechanisms like Redis to store the API response JSON in a docker service or other.
 - Cache the user answers (also possibly in Redis) along with a user ID and limit that user ID to ensure a user doesn't try to brute-force answers.
 - Since the API provides all the country data in one request, we can store these in a database so that we can move away from using an API for constant data. This will give us control of our data format (i.e. in case the API changes the structure of their data) and may result in faster function calls as we aren't calling an extra API.
+- Once I saw an empty capital option, even though we filter out empty options. Haven't seen this again yet.
