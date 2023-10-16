@@ -18,7 +18,7 @@ On page load, the app will find a random country to quiz you on. But you have th
 
   > `$ pnpm backend`
 
-- Run the frontend after:
+- Run the frontend along side the backend:
 
   > `$ pnpm frontend`
 

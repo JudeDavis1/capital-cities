@@ -68,7 +68,9 @@ export function MainCard({ question, setReload }: MainCardProps) {
                     })
                   : toast({
                       title: "Wrong!",
-                      description: `The correct answer is ${res.actual}`,
+                      description: `The correct answer is ${
+                        res.actual ? res.actual : "No Capital"
+                      }`,
                       variant: "destructive",
                     });
               })
