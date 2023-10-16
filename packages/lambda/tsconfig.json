@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        // "rootDir": "./",
+        "strict": true,
+        "module": "CommonJS",
+        "target": "ES6",
+        "esModuleInterop": true,
+        "baseUrl": "./",
+        "paths": {
+            "@capital-cities/*": [
+                "../../packages/*"
+            ]
+        }
+    },
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

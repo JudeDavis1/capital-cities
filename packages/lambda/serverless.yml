@@ -1,0 +1,21 @@
+service: capital-cities
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+custom:
+  serverless-offline:
+    httpPort: 8080
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  get-questions:
+    handler: src/get-questions/get-questions.handler
+    events:
+      - httpApi:
+          path: /get-questions
+          method: get
