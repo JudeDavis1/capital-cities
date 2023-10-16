@@ -49,6 +49,8 @@ Primitive flow for this:
 
 ### `frontend`
 
+Navigate to `/play` (but `/` should just redirect to `play`) to see the app in action.
+
 - A Next.js app with Tailwind CSS and shadcn/ui (\*).
 - The sizing etc. works pretty well until a minimum screen width of about 300px.
 - The feedback is given via toast messages.
