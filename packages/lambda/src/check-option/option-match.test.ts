@@ -1,6 +1,6 @@
 import { SelectedOption } from "@capital-cities/common/types";
 import { optionMatch } from "./option-match";
-import { getCountries } from "../integrations/countries-api";
+import { CountryApi } from "../integrations/countries-api";
 
 describe("optionMatch", () => {
   const test = [
@@ -11,7 +11,7 @@ describe("optionMatch", () => {
   ];
 
   it("should correctly identify correct options", async () => {
-    const countries = await getCountries();
+    const countries = await CountryApi.shared.getCountries();
 
     const correctOption: SelectedOption = {
       country: test[0].name,
@@ -22,7 +22,7 @@ describe("optionMatch", () => {
   });
 
   it("should correctly identify incorrect options", async () => {
-    const countries = await getCountries();
+    const countries = await CountryApi.shared.getCountries();
 
     const correctOption: SelectedOption = {
       country: test[0].name,

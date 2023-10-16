@@ -4,7 +4,7 @@ This is an app to quiz people on capitals of the world.
 
 On page load, the app will find a random country to quiz you on. But you have the option to repeat the quiz. If you get the answer wrong, the correct one will get highlighted.
 
-## To get started:
+## Getting started
 
 - Install `pnpm` if you haven't already:
 
@@ -44,7 +44,8 @@ Primitive flow for this:
 #### Lambda Functions
 
 - `get-questions`: We fetch all the countries in the format `[{name: ..., capital: ...}, ...]` then generates questions like: `[{name: ..., options: [capital1, capital2, capital3]}, ...]`. One of the capitals will be the correct answer.
-- `check-option`: Get the correct capital and test against the user-provided one. Doing this on the lambda ensures that the user cannot see the correct answer.
+- `check-option`: Get the correct capital and test against the user-provided one. Doing this on the lambda ensures that the user cannot see the correct answer. Users may still be able to programmatically query the lambda.
+- `get-flag`: Fetch the flag URL of a given country.
 
 ### `frontend`
 
@@ -62,7 +63,15 @@ _(\*) shadcn/ui is a UI component library that allows you to insert premade cust
 - To limit API calls, we can use caching mechanisms like Redis to store the API response JSON in a docker service or other.
 - Cache the user answers (also possibly in Redis) along with a user ID and limit that user ID to ensure a user doesn't try to brute-force answers.
 - Since the API provides all the country data in one request, we can store these in a database so that we can move away from using an API for constant data. This will give us control of our data format (i.e. in case the API changes the structure of their data) and may result in faster function calls as we aren't calling an extra API.
-- Fix the problem where we see an empty capital option, even though we filter out empty options. This is very rare though. Hypothesis: may be invisible/non-printable characters.
+
+### Libraries used
+
+- axios
+- shadcn-ui
+- React
+- serverless/serverless-offline
+- jest (for unit testing)
+- zod
 
 ## To run test suite
 

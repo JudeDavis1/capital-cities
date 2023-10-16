@@ -2,11 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Question, SelectedOption } from "@capital-cities/common/types";
-import { MoveRight } from "lucide-react";
+import { Loader2, MoveRight } from "lucide-react";
 import { SetReloadFn } from "./types";
 import React from "react";
 import { checkOption } from "@/app/services/check-option";
 import { toast } from "@/components/ui/use-toast";
+import Image from "next/image";
+import { getFlagUrl } from "@/app/services/get-flag-url";
 
 interface MainCardProps {
   question: Question;
@@ -14,6 +16,16 @@ interface MainCardProps {
 }
 
 export function MainCard({ question, setReload }: MainCardProps) {
+  const [flagUrl, setFlagUrl] = React.useState();
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    getFlagUrl(question.name).then((flag) => {
+      setFlagUrl(flag);
+      setLoading(false);
+    });
+  }, [question]);
+
   return (
     <div className="bg-main-card-background space-y-10 p-4 rounded md:w-2/3 w-full mx-auto mt-10">
       <h1 className="bg-orange-400 p-4 text-center sm:w-1/3 w-2/3  mx-auto rounded">
@@ -21,7 +33,21 @@ export function MainCard({ question, setReload }: MainCardProps) {
       </h1>
 
       <h3 className="bg-red-400 p-4 text-center sm:w-1/3 w-2/3 mx-auto rounded">
-        Flag
+        {!loading ? (
+          flagUrl ? (
+            <Image
+              className="flex justify-center mx-auto shadow-lg shadow-black"
+              width={300}
+              height={200}
+              src={flagUrl}
+              alt=""
+            />
+          ) : (
+            <i>No flag</i>
+          )
+        ) : (
+          <Loader2 className="flex justify-center ml-auto animate-spin" />
+        )}
       </h3>
 
       <div className="flex sm:space-x-10 space-x-2 justify-center">

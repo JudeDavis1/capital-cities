@@ -2,19 +2,25 @@ import { APIGatewayEvent, Context } from "aws-lambda";
 import { CountryApi } from "../integrations/countries-api";
 import { logger } from "../logger";
 import { serverErrors } from "@capital-cities/common/errors";
-import { generateQuestionsFromCountries } from "./generate-questions";
+import { SelectedOption } from "@capital-cities/common/types";
+
+export type GetFlagPayload = {
+  countryName: string;
+};
 
 export async function handler(event: APIGatewayEvent, ctx: Context) {
   try {
-    logger.info("getting countries from API");
-    const countries = await CountryApi.shared.getCountries();
-    const questions = generateQuestionsFromCountries(countries);
+    logger.info("getting flag for country");
+
+    const payload: GetFlagPayload = JSON.parse(event.body ?? "{}");
+    const flag = await CountryApi.shared.getCountryFlagUrl(payload.countryName);
+    console.log(flag);
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: "Hello from Serverless!",
-        questions,
+        message: "It works!",
+        flag,
       }),
     };
   } catch (error) {

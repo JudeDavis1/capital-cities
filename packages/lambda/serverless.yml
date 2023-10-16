@@ -26,3 +26,10 @@ functions:
       - httpApi:
           path: /check-option
           method: post
+
+  get-flag:
+    handler: src/get-flag/handler.handler
+    events:
+      - httpApi:
+          path: /get-flag
+          method: post
