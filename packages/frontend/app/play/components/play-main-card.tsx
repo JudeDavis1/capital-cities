@@ -48,7 +48,7 @@ export function MainCard({ question, setReload }: MainCardProps) {
               })
             }
           >
-            {capitalOption ?? "No Capital"}
+            {capitalOption ? capitalOption : "No Capital"}
           </Button>
         ))}
       </div>

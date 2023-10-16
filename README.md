@@ -4,6 +4,24 @@ This is an app to quiz people on capitals of the world.
 
 On page load, the app will find a random country to quiz you on. But you have the option to repeat the quiz. If you get the answer wrong, the correct one will get highlighted.
 
+## To get started:
+
+- Install `pnpm` if you haven't already:
+
+  > _https://pnpm.io/installation_
+
+- In the project root, run:
+
+  > `$ pnpm i`
+
+- Run the backend first:
+
+  > `$ pnpm backend`
+
+- Run the frontend after:
+
+  > `$ pnpm frontend`
+
 ## Packages
 
 ### `lambda`
@@ -20,12 +38,13 @@ On page load, the app will find a random country to quiz you on. But you have th
 - In addition to this, I realized that the initial data sent to the frontend may assist in getting the correct answer, so to combat this, we can send back just the country, and the 3 options.
 
 Primitive flow for this:
+
 ![Alt text](./img/architecture.png)
 
 #### Lambda Functions
 
 - `get-questions`: We fetch all the countries in the format `[{name: ..., capital: ...}, ...]` then generates questions like: `[{name: ..., options: [capital1, capital2, capital3]}, ...]`. One of the capitals will be the correct answer.
-- `check-option`:
+- `check-option`: Get the correct capital and test against the user-provided one. Doing this on the lambda ensures that the user cannot see the correct answer.
 
 ### `frontend`
 
@@ -43,8 +62,8 @@ _(\*) shadcn/ui is a UI component library that allows you to insert premade cust
 - To limit API calls, we can use caching mechanisms like Redis to store the API response JSON in a docker service or other.
 - Cache the user answers (also possibly in Redis) along with a user ID and limit that user ID to ensure a user doesn't try to brute-force answers.
 - Since the API provides all the country data in one request, we can store these in a database so that we can move away from using an API for constant data. This will give us control of our data format (i.e. in case the API changes the structure of their data) and may result in faster function calls as we aren't calling an extra API.
-- Once I saw an empty capital option, even though we filter out empty options. Haven't seen this again yet.
+- Fix the problem where we see an empty capital option, even though we filter out empty options. This is very rare though. Hypothesis: may be invisible/non-printable characters.
 
 ## To run test suite
 
-- Just run `pnpm test` in the root of the project.
+- Run `pnpm test` in the root of the project.
