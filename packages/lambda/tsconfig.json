@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        // "rootDir": "./",
+        "rootDir": "../",
         "strict": true,
         "module": "CommonJS",
         "target": "ES6",
         "esModuleInterop": true,
         "baseUrl": "./",
+        // "noEmit": true,
         "paths": {
             "@capital-cities/*": [
                 "../../packages/*"

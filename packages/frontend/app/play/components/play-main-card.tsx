@@ -1,9 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { GetQuestionResult, Question } from "@capital-cities/common/types";
+import { Question, SelectedOption } from "@capital-cities/common/types";
 import { MoveRight } from "lucide-react";
 import { SetReloadFn } from "./types";
+import React from "react";
+import { checkOption } from "@/app/services/check-option";
+import { toast } from "@/components/ui/use-toast";
 
 interface MainCardProps {
   question: Question;
@@ -22,15 +25,34 @@ export function MainCard({ question, setReload }: MainCardProps) {
       </h3>
 
       <div className="flex sm:space-x-10 space-x-2 justify-center">
-        {question.options.map((option, i) => (
+        {question.options.map((capitalOption, i) => (
           <Button
             className="bg-green-500 px-4 py-10 text-foreground text-xs rounded w-1/3 text-center hover:bg-green-600"
             key={i}
+            onClick={(event) =>
+              checkOption({
+                country: question.name,
+                selectedCapital: capitalOption,
+              }).then((res) => {
+                res.correct
+                  ? toast({
+                      title: "Correct!",
+                      description: "Well done!",
+                      variant: "success",
+                    })
+                  : toast({
+                      title: "Wrong!",
+                      description: `The correct answer is ${res.actual}`,
+                      variant: "destructive",
+                    });
+              })
+            }
           >
-            {option}
+            {capitalOption ?? "No Capital"}
           </Button>
         ))}
       </div>
+
       <Button
         variant="destructive"
         className="flex justify-end ml-auto gap-2"

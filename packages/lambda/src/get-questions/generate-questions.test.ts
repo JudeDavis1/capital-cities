@@ -9,6 +9,9 @@ describe("generateQuestionsFromCountries", () => {
       { name: "Algeria", capital: "Algiers", iso2: "DZ", iso3: "DZA" },
     ];
     const questions = generateQuestionsFromCountries(test);
-    expect(questions[0].options).toContain(test[0].capital);
+
+    for (let i = 0; i < questions.length; i++) {
+      expect(questions[i].options).toContain(test[i].capital);
+    }
   });
 });

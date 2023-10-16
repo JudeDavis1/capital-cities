@@ -14,8 +14,15 @@ provider:
 
 functions:
   get-questions:
-    handler: src/get-questions/get-questions.handler
+    handler: src/get-questions/handler.handler
     events:
       - httpApi:
           path: /get-questions
           method: get
+
+  check-option:
+    handler: src/check-option/handler.handler
+    events:
+      - httpApi:
+          path: /check-option
+          method: post

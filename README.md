@@ -25,6 +25,7 @@ Primitive flow for this:
 #### Lambda Functions
 
 - `get-questions`: We fetch all the countries in the format `[{name: ..., capital: ...}, ...]` then generates questions like: `[{name: ..., options: [capital1, capital2, capital3]}, ...]`. One of the capitals will be the correct answer.
+- `check-option`:
 
 ### `frontend`
 
@@ -43,3 +44,7 @@ _(\*) shadcn/ui is a UI component library that allows you to insert premade cust
 - Cache the user answers (also possibly in Redis) along with a user ID and limit that user ID to ensure a user doesn't try to brute-force answers.
 - Since the API provides all the country data in one request, we can store these in a database so that we can move away from using an API for constant data. This will give us control of our data format (i.e. in case the API changes the structure of their data) and may result in faster function calls as we aren't calling an extra API.
 - Once I saw an empty capital option, even though we filter out empty options. Haven't seen this again yet.
+
+## To run test suite
+
+- Just run `pnpm test` in the root of the project.

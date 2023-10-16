@@ -5,11 +5,15 @@ export const countryInfoSchema = z.object({
   capital: z.string(),
 });
 
+export type CountryInfo = z.infer<typeof countryInfoSchema>;
 export type Question = {
   name: string;
   options: string[];
 };
-export type CountryInfo = z.infer<typeof countryInfoSchema>;
+export type SelectedOption = {
+  country: string;
+  selectedCapital: string;
+};
 
 export interface GetQuestionResult {
   message: string;
