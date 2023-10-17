@@ -2,7 +2,6 @@ import { APIGatewayEvent, Context } from "aws-lambda";
 import { CountryApi } from "../integrations/countries-api";
 import { logger } from "../logger";
 import { serverErrors } from "@capital-cities/common/errors";
-import { SelectedOption } from "@capital-cities/common/types";
 
 export type GetFlagPayload = {
   countryName: string;

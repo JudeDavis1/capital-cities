@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Question, SelectedOption } from "@capital-cities/common/types";
+import { Question } from "@capital-cities/common/types";
 import { Loader2, MoveRight } from "lucide-react";
 import { SetReloadFn } from "./types";
 import React from "react";
