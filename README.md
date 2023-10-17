@@ -27,7 +27,7 @@ On page load, the app will find a random country to quiz you on. But you have th
 ### `lambda`
 
 - The backend is made up of lambda functions using the serverless (offline) framework.
-- I am using Zod here for ensuring objects match at runtime e.g. when I'm making API calls to `countriesnow.space`. This makes it easier to pinpoint object shape mismatch errors on the server.
+- I am using Zod here for ensuring object types match at runtime e.g. when I'm making API calls to `countriesnow.space`. This makes it easier to pinpoint object shape mismatch errors on the server.
 - I decided to use `serverless offline` for lambdas as it is a quick setup for APIs and helps keep things nice and modular, allowing me to scale (add functions) horizontally.
 - The `integrations` folder contains the code that is responsible for interfacing with 3rd party libraries.
 - Using `winston` logger to make server logging easier and nicer. It also provides timestamps and info/warning/error coloring which is useful if errors occur for a user and they report it. We can then analyze logs and pinpoint the issue.
