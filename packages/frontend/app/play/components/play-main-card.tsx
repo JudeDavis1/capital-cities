@@ -16,6 +16,7 @@ interface MainCardProps {
 }
 
 export function MainCard({ question, setReload }: MainCardProps) {
+  const [imgError, setImgError] = React.useState(false);
   const [flagUrl, setFlagUrl] = React.useState();
   const [loading, setLoading] = React.useState(true);
 
@@ -34,13 +35,14 @@ export function MainCard({ question, setReload }: MainCardProps) {
 
       <h3 className="bg-slate-700 p-4 text-center sm:w-1/3 w-2/3 mx-auto rounded">
         {!loading ? (
-          flagUrl ? (
+          flagUrl && !imgError ? (
             <Image
               className="flex justify-center mx-auto shadow-lg shadow-black"
               width={300}
               height={200}
               src={flagUrl}
               alt=""
+              onError={(e) => setImgError(true)}
             />
           ) : (
             <i>No flag</i>
