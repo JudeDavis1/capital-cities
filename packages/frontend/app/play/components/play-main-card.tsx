@@ -32,7 +32,7 @@ export function MainCard({ question, setReload }: MainCardProps) {
         What&apos;s the capital of: <strong>{question.name}</strong>?
       </h1>
 
-      <h3 className="bg-red-400 p-4 text-center sm:w-1/3 w-2/3 mx-auto rounded">
+      <h3 className="bg-slate-700 p-4 text-center sm:w-1/3 w-2/3 mx-auto rounded">
         {!loading ? (
           flagUrl ? (
             <Image
