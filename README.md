@@ -1,6 +1,6 @@
 # Capital City Quizzer
 
-This is an app to quiz people on capitals of the world.
+This is an app to quiz people on the capitals of the world.
 
 On page load, the app will find a random country to quiz you on. But you have the option to repeat the quiz. If you get the answer wrong, the correct one will get highlighted.
 
@@ -29,12 +29,12 @@ On page load, the app will find a random country to quiz you on. But you have th
 - The backend is made up of lambda functions using the serverless (offline) framework.
 - I am using Zod here for ensuring object types match at runtime e.g. when I'm making API calls to `countriesnow.space`. This makes it easier to pinpoint object shape mismatch errors on the server.
 - I decided to use `serverless offline` for lambdas as it is a quick setup for APIs and helps keep things nice and modular, allowing me to scale (add functions) horizontally.
-- The `integrations` folder contains the code that is responsible for interfacing with 3rd party libraries.
+- The `integrations` folder contains the code that is responsible for interfacing with 3rd party APIs.
 - Using `winston` logger to make server logging easier and nicer. It also provides timestamps and info/warning/error coloring which is useful if errors occur for a user and they report it. We can then analyze logs and pinpoint the issue.
 
 #### Security measures
 
-- We should check the answers on the backend so that the user can't see the correct ones. Create a seperate lambda function so that we can do this.
+- We should check the answers on the backend so that the user can't see the correct ones. Create a separate lambda function so that we can do this.
 - In addition to this, I realized that the initial data sent to the frontend may assist in getting the correct answer, so to combat this, we can send back just the country, and the 3 options.
 
 Primitive flow for this:
